@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../shared/device_orientation_builder.dart';
-import '../shared/picker_type.dart';
-import 'date_picker.dart';
+import '../shared/month_picker.dart';
 
 /// Shows a dialog containing a Material Design date picker.
 ///
@@ -34,7 +33,7 @@ import 'date_picker.dart';
 ///
 ///  * [DatePicker], which provides the calendar grid used by the date picker dialog.
 ///
-Future<DateTime?> showDatePickerDialog({
+Future<DateTime?> showMonthPickerDialog({
   required BuildContext context,
   required DateTime maxDate,
   required DateTime minDate,
@@ -45,7 +44,6 @@ Future<DateTime?> showDatePickerDialog({
   DateTime? selectedDate,
   EdgeInsets contentPadding = const EdgeInsets.all(16),
   EdgeInsets padding = const EdgeInsets.all(36),
-  PickerType initialPickerType = PickerType.days,
   bool barrierDismissible = true,
   Color? barrierColor = Colors.black54,
   String? barrierLabel,
@@ -53,13 +51,12 @@ Future<DateTime?> showDatePickerDialog({
   bool useRootNavigator = true,
   RouteSettings? routeSettings,
   Offset? anchorPoint,
-  TextStyle? daysOfTheWeekTextStyle,
   TextStyle? enabledCellsTextStyle,
   BoxDecoration enabledCellsDecoration = const BoxDecoration(),
   TextStyle? disabledCellsTextStyle,
   BoxDecoration disabledCellsDecoration = const BoxDecoration(),
   TextStyle? currentDateTextStyle,
-  BoxDecoration? currentDateDecoration,
+  BoxDecoration currentDateDecoration = const BoxDecoration(),
   TextStyle? selectedCellTextStyle,
   BoxDecoration? selectedCellDecoration,
   double? slidersSize,
@@ -71,6 +68,8 @@ Future<DateTime?> showDatePickerDialog({
   bool centerLeadingDate = false,
   String? previousPageSemanticLabel,
   String? nextPageSemanticLabel,
+  ShapeBorder? shape,
+  Color? backgroundColor,
 }) async {
   return showDialog<DateTime>(
     context: context,
@@ -86,7 +85,7 @@ Future<DateTime?> showDatePickerDialog({
         late final Size size;
         switch (o) {
           case Orientation.portrait:
-            size = const Size(328.0, 400.0);
+            size = const Size(328.0, 350.0);
             break;
           case Orientation.landscape:
             size = const Size(328.0, 300.0);
@@ -95,20 +94,21 @@ Future<DateTime?> showDatePickerDialog({
         return Padding(
           padding: padding,
           child: Dialog(
+            shape: shape,
+            backgroundColor: backgroundColor,
             insetPadding: EdgeInsets.zero,
             child: SizedBox(
               width: width ?? size.width,
               height: height ?? size.height,
-              child: DatePicker(
+              child: MonthPicker(
                 centerLeadingDate: centerLeadingDate,
                 initialDate: initialDate,
                 maxDate: maxDate,
                 minDate: minDate,
                 currentDate: currentDate,
                 selectedDate: selectedDate,
-                onDateSelected: (value) => Navigator.pop(context, value),
-                initialPickerType: initialPickerType,
                 padding: contentPadding,
+                onDateSelected: (value) => Navigator.pop(context, value),
                 currentDateDecoration: currentDateDecoration,
                 currentDateTextStyle: currentDateTextStyle,
                 disabledCellsDecoration: disabledCellsDecoration,
@@ -117,7 +117,6 @@ Future<DateTime?> showDatePickerDialog({
                 enabledCellsTextStyle: enabledCellsTextStyle,
                 selectedCellDecoration: selectedCellDecoration,
                 selectedCellTextStyle: selectedCellTextStyle,
-                daysOfTheWeekTextStyle: daysOfTheWeekTextStyle,
                 leadingDateTextStyle: leadingDateTextStyle,
                 slidersColor: slidersColor,
                 slidersSize: slidersSize,

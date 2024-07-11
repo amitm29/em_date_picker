@@ -38,10 +38,11 @@ class PickerGridDelegate extends SliverGridDelegate {
 
   @override
   SliverGridLayout getLayout(SliverConstraints constraints) {
+    double gap = 14;
     final double tileWidth = constraints.crossAxisExtent / columnCount;
     // vertical padding between cells is 4px
     final double calculatedTileHeight =
-        (constraints.viewportMainAxisExtent - rowCount * 4) / rowCount;
+        (constraints.viewportMainAxisExtent - rowCount * gap) / rowCount;
 
     // height should always be equal or less than the width
     // this is for range decoration.
@@ -52,7 +53,7 @@ class PickerGridDelegate extends SliverGridDelegate {
       childCrossAxisExtent: _zeroOrGreater(tileWidth),
       crossAxisStride: _zeroOrGreater(tileWidth),
       childMainAxisExtent: _zeroOrGreater(tileHeight),
-      mainAxisStride: _zeroOrGreater(tileHeight + 4),
+      mainAxisStride: _zeroOrGreater(tileHeight + gap),
       reverseCrossAxis: axisDirectionIsReversed(constraints.crossAxisDirection),
     );
   }

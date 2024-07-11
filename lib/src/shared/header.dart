@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'leading_date.dart';
+import '../shared/leading_date.dart';
 
 /// The `Header` class represents the header widget that is displayed above the calendar grid.
 ///

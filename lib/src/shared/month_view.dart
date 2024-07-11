@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
-import 'picker_grid_delegate.dart';
-import 'utils.dart';
+import '../shared/picker_grid_delegate.dart';
+import '../shared/utils.dart';
 
 /// Displays the months of a given year and allows choosing a month.
 ///
