@@ -345,7 +345,7 @@ class _MonthPickerState extends State<MonthPicker> {
     final BoxDecoration selectedCellDecoration =
         widget.selectedCellDecoration ??
             BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(16),
               color: colorScheme.primary,
             );
 

@@ -43,7 +43,7 @@ Future<DateTime?> showMonthPickerDialog({
   DateTime? initialDate,
   DateTime? currentDate,
   DateTime? selectedDate,
-  EdgeInsets contentPadding = const EdgeInsets.all(16),
+  EdgeInsets contentPadding = const EdgeInsets.fromLTRB(16, 16, 16, 0),
   EdgeInsets padding = const EdgeInsets.all(36),
   bool barrierDismissible = true,
   Color? barrierColor = Colors.black54,
@@ -86,7 +86,7 @@ Future<DateTime?> showMonthPickerDialog({
         late final Size size;
         switch (o) {
           case Orientation.portrait:
-            size = const Size(328.0, 350.0);
+            size = const Size(328.0, 328.0);
             break;
           case Orientation.landscape:
             size = const Size(328.0, 300.0);
