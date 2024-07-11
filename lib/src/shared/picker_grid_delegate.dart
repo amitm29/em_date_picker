@@ -38,7 +38,7 @@ class PickerGridDelegate extends SliverGridDelegate {
 
   @override
   SliverGridLayout getLayout(SliverConstraints constraints) {
-    double gap = 14;
+    double gap = 16;
     final double tileWidth = constraints.crossAxisExtent / columnCount;
     // vertical padding between cells is 4px
     final double calculatedTileHeight =
