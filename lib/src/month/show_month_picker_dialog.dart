@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../shared/device_orientation_builder.dart';
 import '../shared/month_picker.dart';
@@ -108,7 +109,10 @@ Future<DateTime?> showMonthPickerDialog({
                 currentDate: currentDate,
                 selectedDate: selectedDate,
                 padding: contentPadding,
-                onDateSelected: (value) => Navigator.pop(context, value),
+                onDateSelected: (value) {
+                  Navigator.pop(context, value);
+                  _vibrate(context);
+                },
                 currentDateDecoration: currentDateDecoration,
                 currentDateTextStyle: currentDateTextStyle,
                 disabledCellsDecoration: disabledCellsDecoration,
@@ -132,4 +136,17 @@ Future<DateTime?> showMonthPickerDialog({
       });
     },
   );
+}
+
+void _vibrate(BuildContext context) {
+  switch (Theme.of(context).platform) {
+    case TargetPlatform.android:
+      HapticFeedback.vibrate();
+      break;
+    case TargetPlatform.iOS:
+      HapticFeedback.lightImpact();
+      break;
+    default:
+      break;
+  }
 }
