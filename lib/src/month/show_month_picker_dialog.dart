@@ -86,7 +86,7 @@ Future<DateTime?> showMonthPickerDialog({
         late final Size size;
         switch (o) {
           case Orientation.portrait:
-            size = const Size(328.0, 328.0);
+            size = const Size(328.0, 290.0);
             break;
           case Orientation.landscape:
             size = const Size(328.0, 300.0);

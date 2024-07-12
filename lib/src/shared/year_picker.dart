@@ -5,7 +5,7 @@ import 'header.dart';
 import 'utils.dart';
 import 'year_view.dart';
 
-const yearsInOnePage = 9;
+const yearsInOnePage = 12;
 
 /// Displays a grid of years which allows the user to select a
 /// date.
@@ -380,7 +380,7 @@ class _YearsPickerState extends State<YearsPicker> {
     final BoxDecoration selectedCellDecoration =
         widget.selectedCellDecoration ??
             BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               color: colorScheme.primary,
             );
 
