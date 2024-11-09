@@ -38,6 +38,7 @@ Future<DateTime?> showMonthPickerDialog({
   required BuildContext context,
   required DateTime maxDate,
   required DateTime minDate,
+  String Function(DateTime monthDateTime)? monthFormatter,
   double? width,
   double? height,
   DateTime? initialDate,
@@ -103,6 +104,7 @@ Future<DateTime?> showMonthPickerDialog({
               height: height ?? size.height,
               child: MonthPicker(
                 centerLeadingDate: centerLeadingDate,
+                monthFormatter: monthFormatter,
                 initialDate: initialDate,
                 maxDate: maxDate,
                 minDate: minDate,

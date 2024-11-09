@@ -30,6 +30,7 @@ class MonthView extends StatelessWidget {
     required this.highlightColor,
     required this.splashColor,
     this.splashRadius,
+    this.monthFormatter,
   }) {
     assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate");
     assert(() {
@@ -42,6 +43,9 @@ class MonthView extends StatelessWidget {
           (selected.isBefore(max) || selected.isAtSameMomentAs(max));
     }(), "selected date should be in the range of min date & max date");
   }
+
+  /// Formatter for the month to show
+  final String Function(DateTime monthDateTime)? monthFormatter;
 
   /// The currently selected month.
   ///
@@ -132,6 +136,9 @@ class MonthView extends StatelessWidget {
     final monthsWidgetList = <Widget>[];
 
     int month = 0;
+    final formattedJanuary = monthFormatter?.call(DateTime(year, month + 1));
+    final showingCycleMonth =
+        formattedJanuary != null && formattedJanuary != 'Jan';
     while (month < 12) {
       final DateTime monthToBuild = DateTime(year, month + 1);
 
@@ -167,10 +174,16 @@ class MonthView extends StatelessWidget {
 
       Widget monthWidget = Container(
         decoration: decoration,
-        child: Center(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
           child: Text(
-            monthsNames[month],
-            style: style,
+            monthFormatter?.call(DateTime(year, month + 1)) ??
+                monthsNames[month],
+            style: style.copyWith(
+              fontSize: showingCycleMonth ? 12.5 : null,
+              letterSpacing: showingCycleMonth ? -0.2 : null,
+            ),
           ),
         ),
       );

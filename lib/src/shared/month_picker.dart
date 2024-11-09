@@ -71,6 +71,7 @@ class MonthPicker extends StatefulWidget {
     this.centerLeadingDate = false,
     this.previousPageSemanticLabel = 'Previous Month',
     this.nextPageSemanticLabel = 'Next Month',
+    this.monthFormatter,
   }) {
     assert(!minDate.isAfter(maxDate), "minDate can't be after maxDate");
 
@@ -96,6 +97,9 @@ class MonthPicker extends StatefulWidget {
       'initialDate $initialDate must be on or before maxDate $maxDate.',
     );
   }
+
+  /// Formatter for the month to show
+  final String Function(DateTime monthDateTime)? monthFormatter;
 
   /// The date which will be displayed on first opening. If not specified, the picker
   /// will default to `DateTime.now()`. If `DateTime.now()` does not fall within the
@@ -448,6 +452,7 @@ class _MonthPickerState extends State<MonthPicker> {
 
                     return MonthView(
                       key: ValueKey<DateTime>(year),
+                      monthFormatter: widget.monthFormatter,
                       currentDate: widget.currentDate != null
                           ? DateUtilsX.monthOnly(widget.currentDate!)
                           : DateUtilsX.monthOnly(DateTime.now()),
